@@ -1,4 +1,4 @@
-package array;
+package problem.Inflearn.array;
 
 import java.util.Scanner;
 
