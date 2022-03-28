@@ -17,8 +17,27 @@ public class MaxLengthConsecutiveSubSequence {
         System.out.println(answer);
     }
 
+    // Two pointers
     private int solution(int n, int m, int[] numbers) {
+        int startIndex = 0;
+        int endIndex = 0;
+        int changeCount = 0;
+        int maxLength = 1;
+        while (endIndex < n - 1) {
+            if (numbers[endIndex] == 0) changeCount++;
+            if (changeCount > m) {
+                while (changeCount > m) {
+                    if (numbers[startIndex] == 0) {
+                        changeCount--;
+                    }
+                    startIndex++;
+                }
+            }
+            int tempLength = endIndex - startIndex + 1;
+            if (maxLength < tempLength) maxLength = tempLength;
+            endIndex++;
+        }
 
-        return 0;
+        return maxLength;
     }
 }
