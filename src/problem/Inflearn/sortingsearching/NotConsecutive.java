@@ -1,4 +1,4 @@
-package problem.Inflearn.slidingwindow;
+package problem.Inflearn.sortingsearching;
 
 import java.util.Arrays;
 import java.util.Scanner;
