@@ -26,14 +26,14 @@ public class RouteSearch {
             adjacencyList.get(x - 1).add(y - 1);
         }
 
-        int answer = new RouteSearch().solution(vertexCount, edgeCount, adjacencyMatrix);
+        int answer = new RouteSearch().solution(vertexCount, adjacencyMatrix);
         System.out.println(answer);
 
-        answer = new RouteSearch().solution2(vertexCount, edgeCount, adjacencyList);
+        answer = new RouteSearch().solution2(vertexCount, adjacencyList);
         System.out.println(answer);
     }
 
-    private int solution2(int vertexCount, int edgeCount, List<List<Integer>> adjacencyList) {
+    private int solution2(int vertexCount, List<List<Integer>> adjacencyList) {
         int[] visits = new int[vertexCount];
         return dfs(1, vertexCount, adjacencyList, visits);
     }
@@ -53,7 +53,7 @@ public class RouteSearch {
                 }).mapToInt(Integer::valueOf).sum();
     }
 
-    private int solution(int vertexCount, int edgeCount, int[][] adjacencyMatrix) {
+    private int solution(int vertexCount, int[][] adjacencyMatrix) {
         int[] visits = new int[vertexCount];
         return dfs(1, vertexCount, adjacencyMatrix, visits);
     }
