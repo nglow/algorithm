@@ -24,9 +24,8 @@ public class GraphShortestPath {
 
     private void solution(int vertexCount, int edgeCount, List<List<Integer>> adjacencyList) {
         int[] visits = new int[vertexCount];
-        for (int i = 1; i < vertexCount; i++) {
-            int level = 0;
-            System.out.print(bfs(1, i + 1, adjacencyList, visits) + " ");
+        for (int endNode = 2; endNode <= vertexCount; endNode++) {
+            System.out.print(bfs(1, endNode, adjacencyList, visits) + " ");
         }
     }
 
