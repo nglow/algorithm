@@ -1,7 +1,6 @@
 package problem.Inflearn.greedy;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 // 씨름
 public class SeeRm {
@@ -9,10 +8,9 @@ public class SeeRm {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
         var n = scanner.nextInt();
-        int[][] players = new int[n][2];
+        List<Player> players =  new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            players[i][0] = scanner.nextInt();
-            players[i][1] = scanner.nextInt();
+            players.add(new Player(scanner.nextInt(), scanner.nextInt()));
         }
 
         int answer = new SeeRm().solution(n, players);
@@ -20,26 +18,31 @@ public class SeeRm {
         System.out.println(answer);
     }
 
-    private int solution(int n, int[][] players) {
-        boolean[] failCheckList = new boolean[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (players[i][0] < players[j][0] && players[i][1] < players[j][1]) {
-                    failCheckList[i] = true;
-                    break;
-                }
+    private int solution(int n, List<Player> players) {
+        int count = 0;
+        players.sort(Comparator.naturalOrder());
+        int max = Integer.MIN_VALUE;
+        for (Player player : players) {
+            if (player.weight > max) {
+                max = player.weight;
+                count++;
             }
         }
 
-        return countPass(failCheckList);
+        return count;
     }
 
-    private int countPass(boolean[] failCheckList) {
-        int count = 0;
-        for (boolean isFail : failCheckList) {
-            if (!isFail) count++;
+    static class Player implements Comparable<Player> {
+        int height, weight;
+
+        public Player(int height, int weight) {
+            this.height = height;
+            this.weight = weight;
         }
 
-        return count;
+        @Override
+        public int compareTo(Player o) {
+            return o.height - this.height;
+        }
     }
 }
